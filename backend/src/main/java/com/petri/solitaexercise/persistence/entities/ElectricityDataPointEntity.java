@@ -4,12 +4,12 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import org.springframework.data.annotation.Id;
-
-import com.petri.solitaexercise.core.model.ElectricityDataPointModel;
+import com.petri.solitaexercise.core.models.ElectricityDataPointModel;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -17,6 +17,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "electricitydata")
 public class ElectricityDataPointEntity {
     @Id
     private Long id;
@@ -40,6 +41,7 @@ public class ElectricityDataPointEntity {
                 .startTime(this.startTime)
                 .productionAmount(this.productionAmount)
                 .consumptionAmount(this.consumptionAmount)
+                .hourlyPrice(this.hourlyPrice)
                 .build();
     }
 }

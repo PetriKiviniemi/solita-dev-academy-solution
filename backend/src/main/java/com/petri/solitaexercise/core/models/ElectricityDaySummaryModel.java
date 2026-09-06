@@ -2,7 +2,6 @@ package com.petri.solitaexercise.core.models;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,14 +11,15 @@ import lombok.NonNull;
 @Getter
 @Builder
 @AllArgsConstructor
-public class ElectricityDataPointModel {
-    @NonNull
-    private final Long id;
+public class ElectricityDaySummaryModel {
     @NonNull
     private final LocalDate date;
-    @NonNull
-    private final LocalDateTime startTime;
+
     private final BigDecimal productionAmount;
     private final BigDecimal consumptionAmount;
-    private final BigDecimal hourlyPrice;
+    private final BigDecimal averagePrice;
+    private final Integer longestConsecutiveHoursOfNegativePrice;
+
+    /** NB. Some days have missing data points */
+    private final int hoursWithData;
 }

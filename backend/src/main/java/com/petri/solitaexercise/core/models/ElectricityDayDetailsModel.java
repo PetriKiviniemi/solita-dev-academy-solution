@@ -2,24 +2,22 @@ package com.petri.solitaexercise.core.models;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.List;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NonNull;
 
 @Getter
 @Builder
-@AllArgsConstructor
-public class ElectricityDataPointModel {
-    @NonNull
-    private final Long id;
+public class ElectricityDayDetailsModel {
+
     @NonNull
     private final LocalDate date;
-    @NonNull
-    private final LocalDateTime startTime;
     private final BigDecimal productionAmount;
     private final BigDecimal consumptionAmount;
-    private final BigDecimal hourlyPrice;
+    private final BigDecimal averagePrice;
+    private final int hoursWithData;
+    private final ElectricityDataPointModel peakConsumptionToProductionHour;
+    private final List<ElectricityDataPointModel> cheapestHours;
 }
