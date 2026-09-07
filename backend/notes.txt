@@ -1,0 +1,6 @@
+Things to do::
+Cleanup dockerfile
+Cleanup docker-compose.yml
+Cleanup Readme.md
+Supabase ipv6 vs cloud run ipv4? What alternatives are there for db deployment
+application.properties cleanup (unused, unrelavant fields)

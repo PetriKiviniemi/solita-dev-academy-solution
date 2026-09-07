@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.petri.solitaexercise.core.factories.DayDetailsFactory;
-import com.petri.solitaexercise.core.models.DaySortField;
+import com.petri.solitaexercise.core.models.enums.DaySortFieldEnum;
 import com.petri.solitaexercise.core.models.ElectricityDaySummaryModel;
 import com.petri.solitaexercise.core.models.ElectricityDataPointModel;
 import com.petri.solitaexercise.core.models.ElectricityDayDetailsModel;
@@ -32,7 +32,7 @@ public class StatisticsService {
     private final ElectricityDataPointRepository electricityDataPointRepository;
 
     @Transactional(readOnly = true)
-    public Page<ElectricityDaySummaryModel> getDaySummaries(int page, int size, DaySortField sortBy,
+    public Page<ElectricityDaySummaryModel> getDaySummaries(int page, int size, DaySortFieldEnum sortBy,
             Sort.Direction direction) {
         Page<DaySummaryRow> rows = electricityDataPointRepository
                 .findDaySummaries(toPageable(page, size, sortBy, direction));
@@ -53,7 +53,7 @@ public class StatisticsService {
         return Optional.of(DayDetailsFactory.from(date, hours, cheapestHourCount));
     }
 
-    private Pageable toPageable(int page, int size, DaySortField sortBy, Sort.Direction direction) {
+    private Pageable toPageable(int page, int size, DaySortFieldEnum sortBy, Sort.Direction direction) {
         return PageRequest.of(page, Math.min(size, MAX_PAGE_SIZE), DaySummarySort.toDatabaseSort(sortBy, direction));
     }
 }

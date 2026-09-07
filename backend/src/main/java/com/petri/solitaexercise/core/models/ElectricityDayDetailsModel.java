@@ -20,4 +20,7 @@ public class ElectricityDayDetailsModel {
     private final int hoursWithData;
     private final ElectricityDataPointModel peakConsumptionToProductionHour;
     private final List<ElectricityDataPointModel> cheapestHours;
+    // NB. The hours are stored as a separate list, to perform graph calculations on
+    // the frontend.
+    private final List<ElectricityDataPointModel> hours;
 }

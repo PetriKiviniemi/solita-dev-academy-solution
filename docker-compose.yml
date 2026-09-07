@@ -1,0 +1,41 @@
+services:
+  # Local development database service. In production, the database is hosted in SupaBase.
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: academy
+      POSTGRES_PASSWORD: academy
+      POSTGRES_DB: electricity
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./db/init:/docker-entrypoint-initdb.d:ro
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -h 127.0.0.1 -U academy -d electricity" ]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+  backend:
+    build: ./backend
+    environment:
+      DB_URL: jdbc:postgresql://db:5432/electricity
+      DB_USERNAME: academy
+      DB_PASSWORD: academy
+    ports:
+      - "8080:8080"
+    # Wait for the database to be healthy before starting the backend service
+    # This is only relevant for the local development environment, since
+    # the database is already running in SupaBase for production.
+    depends_on:
+      db:
+        condition: service_healthy
+
+  adminer:
+    image: adminer
+    ports:
+      - "8090:8080"
+    depends_on:
+      - db
+volumes:
+  pgdata:

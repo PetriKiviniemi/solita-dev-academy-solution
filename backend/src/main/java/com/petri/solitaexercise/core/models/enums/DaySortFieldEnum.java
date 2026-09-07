@@ -1,6 +1,6 @@
-package com.petri.solitaexercise.core.models;
+package com.petri.solitaexercise.core.models.enums;
 
-public enum DaySortField {
+public enum DaySortFieldEnum {
     DATE,
     CONSUMPTION_AMOUNT,
     PRODUCTION_AMOUNT,

@@ -16,11 +16,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.petri.solitaexercise.api.dtos.ApiDaySummaryDto;
 import com.petri.solitaexercise.api.dtos.ApiDayDetailsDto;
-import com.petri.solitaexercise.core.models.DaySortField;
+import com.petri.solitaexercise.core.models.enums.DaySortFieldEnum;
 import com.petri.solitaexercise.core.services.StatisticsService;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -35,14 +34,14 @@ public interface ElectricityStatisticsApi {
 
         @Operation(summary = "Fetch the electricity statistics summary of the day", description = """
                         The daily data is aggregated from hourly data.""")
-        @ApiResponse(responseCode = "200", description = "Page of daily electricity statistics", content = @Content(array = @ArraySchema(schema = @Schema(implementation = ApiDaySummaryDto.class))))
+        @ApiResponse(responseCode = "200", description = "Page of daily electricity statistics")
         @ApiResponse(responseCode = "400", description = "Unknown sort field or invalid page format", content = @Content)
         @GetMapping(value = "/days", produces = APPLICATION_JSON_VALUE)
         @ResponseStatus(HttpStatus.OK)
         PagedModel<ApiDaySummaryDto> fetchDaySummaries(
                         @RequestParam(defaultValue = "0") @Min(value = 0) int page,
                         @RequestParam(defaultValue = "20") @Min(value = 1) @Max(value = StatisticsService.MAX_PAGE_SIZE) int size,
-                        @RequestParam(defaultValue = "DATE") @NotNull DaySortField sortBy,
+                        @RequestParam(defaultValue = "DATE") @NotNull DaySortFieldEnum sortBy,
                         @RequestParam(defaultValue = "DESC") @NotNull Sort.Direction direction);
 
         @Operation(summary = "Fetch the electricity statistics of a single day", description = """

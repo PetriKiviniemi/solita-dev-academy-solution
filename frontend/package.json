@@ -1,0 +1,40 @@
+{
+  "name": "frontend",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "react-router build",
+    "dev": "react-router dev",
+    "start": "react-router-serve ./build/server/index.js",
+    "typecheck": "react-router typegen && tsc",
+    "generate:api": "openapi-ts"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@hey-api/openapi-ts": "^0.99.0",
+    "@mui/material": "^9.4.0",
+    "@mui/x-charts": "^9.13.0",
+    "@mui/x-date-pickers": "^9.13.0",
+    "@react-router/node": "^8",
+    "@react-router/serve": "^8",
+    "@tanstack/react-query": "^5.102.8",
+    "@tanstack/react-virtual": "^3.14.11",
+    "axios": "^1.20.0",
+    "dayjs": "^1.11.23",
+    "isbot": "^5.1.36",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "react-router": "^8"
+  },
+  "devDependencies": {
+    "@react-router/dev": "^8",
+    "@tailwindcss/vite": "^4.2.2",
+    "@types/node": "^22",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "tailwindcss": "^4.2.2",
+    "typescript": "^5.9.3",
+    "vite": "^8.0.3"
+  }
+}

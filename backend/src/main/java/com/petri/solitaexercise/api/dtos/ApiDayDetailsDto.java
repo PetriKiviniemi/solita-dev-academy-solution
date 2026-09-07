@@ -16,7 +16,8 @@ public record ApiDayDetailsDto(
                 @Schema(description = "Average price over the hours of the day") BigDecimal averagePrice,
                 @Schema(description = "Hours stored for this day", example = "24") int hoursWithData,
                 @Schema(description = "The hour whose consumption was highest relative to its production") ApiHourDto peakConsumptionToProductionHour,
-                @Schema(description = "The cheapest hours of the day") List<ApiHourDto> cheapestHours) {
+                @Schema(description = "The cheapest hours of the day") List<ApiHourDto> cheapestHours,
+                @Schema(description = "Every recorded hour of the day") List<ApiHourDto> hours) {
         public static ApiDayDetailsDto from(ElectricityDayDetailsModel model) {
                 return new ApiDayDetailsDto(
                                 model.getDate(),
@@ -27,6 +28,7 @@ public record ApiDayDetailsDto(
                                 model.getPeakConsumptionToProductionHour() == null
                                                 ? null
                                                 : ApiHourDto.from(model.getPeakConsumptionToProductionHour()),
-                                model.getCheapestHours().stream().map(ApiHourDto::from).toList());
+                                model.getCheapestHours().stream().map(ApiHourDto::from).toList(),
+                                model.getHours().stream().map(ApiHourDto::from).toList());
         }
 }

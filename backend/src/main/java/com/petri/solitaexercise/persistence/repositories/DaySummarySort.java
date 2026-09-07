@@ -2,20 +2,20 @@ package com.petri.solitaexercise.persistence.repositories;
 
 import org.springframework.data.domain.Sort;
 
-import com.petri.solitaexercise.core.models.DaySortField;
+import com.petri.solitaexercise.core.models.enums.DaySortFieldEnum;
 
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 public final class DaySummarySort {
 
-    private static final Sort NEWEST_FIRST = Sort.by(Sort.Order.desc(columnOf(DaySortField.DATE)));
+    private static final Sort NEWEST_FIRST = Sort.by(Sort.Order.desc(columnOf(DaySortFieldEnum.DATE)));
 
-    public static Sort toDatabaseSort(DaySortField field, Sort.Direction direction) {
+    public static Sort toDatabaseSort(DaySortFieldEnum field, Sort.Direction direction) {
         return Sort.by(Sort.Order.by(columnOf(field)).with(direction).nullsLast()).and(NEWEST_FIRST);
     }
 
-    private static String columnOf(DaySortField field) {
+    private static String columnOf(DaySortFieldEnum field) {
         return switch (field) {
             case DATE -> "date";
             case CONSUMPTION_AMOUNT -> "consumption_amount";

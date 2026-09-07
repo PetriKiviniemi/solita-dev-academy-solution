@@ -10,7 +10,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.petri.solitaexercise.api.dtos.ApiDaySummaryDto;
 import com.petri.solitaexercise.api.dtos.ApiDayDetailsDto;
-import com.petri.solitaexercise.core.models.DaySortField;
+import com.petri.solitaexercise.core.models.enums.DaySortFieldEnum;
 import com.petri.solitaexercise.core.services.StatisticsService;
 
 import lombok.RequiredArgsConstructor;
@@ -22,7 +22,7 @@ public class ElectricityStatisticsApiImpl implements ElectricityStatisticsApi {
     private final StatisticsService statisticsService;
 
     @Override
-    public PagedModel<ApiDaySummaryDto> fetchDaySummaries(int page, int size, DaySortField sortBy,
+    public PagedModel<ApiDaySummaryDto> fetchDaySummaries(int page, int size, DaySortFieldEnum sortBy,
             Sort.Direction direction) {
         return new PagedModel<>(statisticsService.getDaySummaries(page, size, sortBy, direction)
                 .map(ApiDaySummaryDto::from));

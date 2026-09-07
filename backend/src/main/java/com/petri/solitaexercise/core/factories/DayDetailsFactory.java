@@ -49,6 +49,7 @@ public final class DayDetailsFactory {
                 .hoursWithData(hours.size())
                 .peakConsumptionToProductionHour(peakConsumptionToProductionHour(hours))
                 .cheapestHours(cheapestHours(hours, cheapestHourCount))
+                .hours(hours)
                 .build();
     }
 
