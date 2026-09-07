@@ -70,7 +70,7 @@ The project uses several dependencies on both the frontend and backend. Some of 
 - TanStack React Virtual
 - Hey-api OpenAPI to TS generator
 
-### Build and run locally
+## Build
 Prerequisites
 Docker
 JDK 21
