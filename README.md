@@ -53,9 +53,9 @@ The backend is implemented using Java and Spring Boot and packaged into a Docker
 
 The backend follows a three-layer architecture that separates:
 
-Persistence
-Business logic
-API
+- Persistence
+- Business logic
+- API
 
 ### Frontend
 
@@ -65,10 +65,10 @@ It follows a DDD-ish approach, with the domain model separated from the UI model
 
 The project uses several dependencies on both the frontend and backend. Some of the notable frontend dependencies are:
 
-MUI
-TanStack React Query
-React Virtualizer
-OpenAPI-generated types
+- MUI
+- TanStack React Query
+- TanStack React Virtual
+- Hey-api OpenAPI to TS generator
 
 ### Build and run locally
 Prerequisites
@@ -106,10 +106,10 @@ I also considered a naive approach of creating a summary table that would be cal
 
 A benchmark comparing the two approaches showed approximately (over local network):
 
-Java-side calculations: 460 ms
-SQL-side calculations: 80 ms
+- Java-side calculations: 460 ms  
+- SQL-side calculations: 80 ms  
 
-The larger gain is that the SQL approach avoids transferring megabytes of data between the database and the application and thus increasing the cloud bill.
+The larger gain is that the SQL approach avoids transferring megabytes of data between the database and the application and thus does not increase the cloud bill as much.
 
 I do wonder whether there is a better approach that would allow JPA to be used directly for these calculations, if that even makes sense for this use case. One downside of using manual SQL query, is that the query is not automatically validated against the application entities in the same way as a JPA-based approach would be.
 
@@ -130,15 +130,18 @@ For missing data points, I decided to store the number of recorded hours per day
 When sorting by column, rows containing null values are placed at the bottom of the sorted collection.
 
 ## Not implemented features
-- Searching and filtering are not implemented.
+### Searching and filtering  
+
 Since I decided to move away from using JPA and instead perform the calculations closer to the database using SQL, implementing searching and filtering would have required making the SQL query more complex.  
 This would have been doable with AI, but with the limited time available for the exercise, I decided not to spend time implementing something that I would not have had enough time to fully understand and validate myself.  
 
-- Additional graph visualizations
+### Additional graph visualizations
 
 For example, creating daily summary comparisons from a monthly perspective would have required implementing from-to date filtering for the data.
 
-- E2E tests were left out due to the limited time available for the exercise.
+### E2E tests 
+
+These were left out due to the limited time available for the exercise.
 
 For example, I could have implemented Playwright tests that navigate to a specific day's endpoint and verify that the data displayed in the UI matches the corresponding data in the database.
 
@@ -151,7 +154,7 @@ Unit tests were also left out for the same reason.
 
 ## AI usage  
 
-AI was used in parts of the backend implementation, in providing perspective on difficult design decisions, and in the frontend UI design and implementation. I used Claude Opus 5 as the model.
+AI was used in some parts of the backend implementation, in providing perspective on difficult design decisions, and in the frontend UI design and implementation. I used Claude Opus 5 as the model.
 
 All architectural and design decisions were ultimately made by me. The AI agent was particularly useful for challenging my assumptions, exploring different approaches, and writing parts of the code according to the architectural and implementation style I had described.
 
