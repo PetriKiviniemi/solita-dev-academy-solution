@@ -79,12 +79,11 @@ Node.js 20+
 From the project root:
 
 ```
-cd backend
 docker compose up -d --build
 ```
 
 ```
-cd ../frontend
+cd ./frontend
 npm install
 npm run dev
 ```
