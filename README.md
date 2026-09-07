@@ -129,7 +129,7 @@ For missing data points, I decided to store the number of recorded hours per day
 
 When sorting by column, rows containing null values are placed at the bottom of the sorted collection.
 
-## Not implemented features
+## Features left out
 ### Searching and filtering  
 
 Since I decided to move away from using JPA and instead perform the calculations closer to the database using SQL, implementing searching and filtering would have required making the SQL query more complex.  
